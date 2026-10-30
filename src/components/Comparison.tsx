@@ -171,14 +171,14 @@ export default function Comparison({
                         domain={["dataMin", "dataMax"]}
                         tickLine={false}
                         axisLine={false}
-                        tick={{ fontSize: 11, fill: "#7a8799" }}
+                        tick={{ fontSize: 13, fill: "#52627a" }}
                       />
                       <YAxis
                         tickLine={false}
                         axisLine={false}
                         domain={["auto", "auto"]}
                         tickFormatter={(v) => number(v)}
-                        tick={{ fontSize: 11, fill: "#7a8799" }}
+                        tick={{ fontSize: 13, fill: "#52627a" }}
                       />
                       <Tooltip
                         labelFormatter={(v) =>
@@ -189,7 +189,7 @@ export default function Comparison({
                       <Line
                         dataKey="base"
                         name={base.name}
-                        stroke="#8b7cc1"
+                        stroke="#7756b0"
                         strokeWidth={2}
                         dot={points.length < 30 ? { r: 2 } : false}
                         isAnimationActive={false}
@@ -197,7 +197,7 @@ export default function Comparison({
                       <Line
                         dataKey="variant"
                         name={variant.name}
-                        stroke="#496fdf"
+                        stroke="#345dce"
                         strokeWidth={2}
                         dot={points.length < 30 ? { r: 2 } : false}
                         isAnimationActive={false}
@@ -206,11 +206,11 @@ export default function Comparison({
                   </ResponsiveContainer>
                   <div className="chart-legend">
                     <span>
-                      <i style={{ background: "#8b7cc1" }} />
+                      <i style={{ background: "#7756b0" }} />
                       {base.name}
                     </span>
                     <span>
-                      <i style={{ background: "#496fdf" }} />
+                      <i style={{ background: "#345dce" }} />
                       {variant.name}
                     </span>
                   </div>

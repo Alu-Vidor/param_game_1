@@ -252,7 +252,7 @@ export default function Results({
                       <span
                         style={{
                           width: `${Math.min(100, Math.max(0, value * 100))}%`,
-                          background: p ? "#8b7cc1" : "#496fdf",
+                          background: STRATEGY_COLORS[p],
                         }}
                       />
                     </div>

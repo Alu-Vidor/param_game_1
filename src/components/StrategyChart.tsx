@@ -12,14 +12,14 @@ import {
 import type { GameResult } from "../engine/types";
 
 export const STRATEGY_COLORS = [
-  "#496fdf",
-  "#8b7cc1",
-  "#d69943",
-  "#358c9a",
-  "#ca788d",
-  "#8c9e47",
-  "#708db8",
-  "#bc8e69",
+  "#345dce",
+  "#7756b0",
+  "#b7791f",
+  "#147c8c",
+  "#b74668",
+  "#637c2e",
+  "#476a9f",
+  "#975e35",
 ];
 
 const format = (n: number) =>
@@ -105,13 +105,13 @@ export default function StrategyChart({
             tickLine={false}
             axisLine={false}
             minTickGap={28}
-            tick={{ fill: "#8a928d", fontSize: 11 }}
+            tick={{ fill: "#52627a", fontSize: 13 }}
             tickFormatter={format}
           />
           <YAxis
             tickLine={false}
             axisLine={false}
-            tick={{ fill: "#8a928d", fontSize: 11 }}
+            tick={{ fill: "#52627a", fontSize: 13 }}
             width={kind === "value" ? 62 : 65}
             domain={kind === "value" ? ["auto", "auto"] : [0, 1]}
             tickFormatter={(v: number) =>

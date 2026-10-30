@@ -85,6 +85,14 @@ export default function App() {
     return () => clearTimeout(id);
   }, [toast]);
   useEffect(() => () => worker.current?.terminate(), []);
+  function showLibrary() {
+    setActiveId(null);
+    window.scrollTo({ top: 0 });
+  }
+  function showSection(next: "conditions" | "result") {
+    setView(next);
+    window.scrollTo({ top: 0 });
+  }
   function open(id: string, target?: "conditions" | "result") {
     const m = models.find((m) => m.id === id);
     setActiveId(id);
@@ -129,7 +137,7 @@ export default function App() {
     const checked = validate(model);
     if (!checked.config) {
       setToast(checked.error);
-      setView("conditions");
+      showSection("conditions");
       return;
     }
     const next: Job = {
@@ -142,7 +150,7 @@ export default function App() {
     };
     jobRef.current = next;
     setJob(next);
-    setView("result");
+    showSection("result");
     setModels((ms) =>
       ms.map((m) => (m.id === next.modelId ? { ...m, error: undefined } : m)),
     );
@@ -257,7 +265,7 @@ export default function App() {
       <aside className="sidebar">
         <button
           className="brand"
-          onClick={() => setActiveId(null)}
+          onClick={showLibrary}
           aria-label="Стратегия — все модели"
         >
           <span className="brand-mark">
@@ -280,7 +288,7 @@ export default function App() {
           <button
             aria-label="Модели"
             className={`nav-item ${!activeId ? "active" : ""}`}
-            onClick={() => setActiveId(null)}
+            onClick={showLibrary}
           >
             <FolderOpen size={18} />
             <span>Модели</span>
@@ -335,7 +343,7 @@ export default function App() {
           <div className="breadcrumbs">
             <span>Рабочее пространство</span>
             <ChevronRight size={13} />
-            <button onClick={() => setActiveId(null)}>Модели</button>
+            <button onClick={showLibrary}>Модели</button>
             {model && (
               <>
                 <ChevronRight size={13} />
@@ -397,7 +405,7 @@ export default function App() {
                 <div>
                   <button
                     className="back-link"
-                    onClick={() => setActiveId(null)}
+                    onClick={showLibrary}
                   >
                     <ArrowLeft size={14} />
                     Все модели
@@ -442,7 +450,7 @@ export default function App() {
                     role="tab"
                     aria-selected={view === "conditions"}
                     className={view === "conditions" ? "active" : ""}
-                    onClick={() => setView("conditions")}
+                    onClick={() => showSection("conditions")}
                   >
                     <span>01</span>Условия
                   </button>
@@ -450,7 +458,7 @@ export default function App() {
                     role="tab"
                     aria-selected={view === "result"}
                     className={view === "result" ? "active" : ""}
-                    onClick={() => setView("result")}
+                    onClick={() => showSection("result")}
                   >
                     <span>02</span>Результат
                   </button>
@@ -507,7 +515,7 @@ export default function App() {
                   model={model}
                   busy={!!job}
                   onRun={run}
-                  onEdit={() => setView("conditions")}
+                  onEdit={() => showSection("conditions")}
                   onCompare={() => setModal("compare")}
                 />
               )}
